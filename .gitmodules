@@ -1,0 +1,6 @@
+[submodule "vendor/yuescript-vim"]
+	path = vendor/yuescript-vim
+	url = git@github.com:pigpigyyy/yuescript-vim.git
+[submodule "vendor/nvim-moonwalk"]
+	path = vendor/nvim-moonwalk
+	url = git@github.com:gpanders/nvim-moonwalk.git
