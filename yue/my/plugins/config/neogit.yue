@@ -1,0 +1,5 @@
+export default ->
+  status_ok, neogit = pcall(require, "neogit")
+
+  unless not status_ok
+    neogit.setup {}

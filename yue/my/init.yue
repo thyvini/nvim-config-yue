@@ -1,1 +1,3 @@
-print "hi from yue"
+import "my.plugins" as plugin_setup
+
+plugin_setup()

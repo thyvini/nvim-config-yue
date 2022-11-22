@@ -1,0 +1,53 @@
+import "my.utils" as :path_expand
+
+export default ->
+  -- Indicate first time installation
+  packer_bootstrap = false
+
+  -- packer.nvim configuration
+  conf = {
+    display: {
+      open_fn: -> require('packer.util').float { border: 'rounded' },
+    },
+  }
+
+  -- Check if packer.nvim is installed
+  packer_init = ->
+    fn = vim.fn
+    base_path = fn.stdpath "data"
+    install_path = path_expand { base_path, "site", "pack", "packer", "start", "packer.nvim" }
+    if (fn.empty(fn.glob(install_path)) > 0)
+      packer_bootstrap = fn.system {
+        "git",
+  			"clone",
+  			"--depth",
+  			"1",
+        "https://github.com/wbthomason/packer.nvim",
+  			install_path,
+      }
+      vim.cmd [[packadd packer.nvim]]
+    vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
+  
+  plugins = (use) ->
+    use { "wbthomason/packer.nvim" }
+
+    use { "pigpigyyy/yuescript-vim" }
+
+    use {
+      'projekt0n/github-nvim-theme',
+      config: ->
+        require('github-theme').setup {}
+        vim.cmd [[colorscheme github_dark]]
+    }
+    use {
+      'TimUntersberger/neogit',
+      requires: 'nvim-lua/plenary.nvim',
+      config: -> require("my.plugins.config.neogit")()
+    }
+
+  packer_init()
+
+  packer = require "packer"
+  packer.init(conf)
+  packer.startup(plugins)
+

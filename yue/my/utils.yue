@@ -1,0 +1,15 @@
+export add_affix = (prefix='', items, suffix='') ->
+  if items |> type != 'table'
+    items = {items}
+  [prefix .. item .. suffix for item in *items]
+
+export get_os = () ->
+  current_os = jit.os
+  if current_os == 'Linux' and 'microsoft' == vim.fn.readfile('/proc/version')[1]::lower()
+    current_os = 'Wsl'
+  current_os
+
+export path_expand = (path)->
+  path_separator = get_os() == 'Windows' and '\\' or '/'
+  path = type(path) == 'table' and table.concat(path, path_separator)
+  vim.fn.expand path
