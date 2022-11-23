@@ -1,0 +1,8 @@
+export default ->
+  luasnip = require 'luasnip'
+
+  luasnip.config.set_config {
+    history: false,
+  }
+
+  require('luasnip/loaders/from_vscode').load()

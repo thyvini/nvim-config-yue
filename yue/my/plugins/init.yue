@@ -1,4 +1,4 @@
-import "my.utils" as :path_expand
+import 'my.utils' as :path_expand
 
 export default ->
   -- Indicate first time installation
@@ -14,40 +14,166 @@ export default ->
   -- Check if packer.nvim is installed
   packer_init = ->
     fn = vim.fn
-    base_path = fn.stdpath "data"
-    install_path = path_expand { base_path, "site", "pack", "packer", "start", "packer.nvim" }
+    base_path = fn.stdpath 'data'
+    install_path = path_expand { base_path, 'site', 'pack', 'packer', 'start', 'packer.nvim' }
     if (fn.empty(fn.glob(install_path)) > 0)
       packer_bootstrap = fn.system {
-        "git",
-  			"clone",
-  			"--depth",
-  			"1",
-        "https://github.com/wbthomason/packer.nvim",
+        'git',
+  			'clone',
+  			'--depth',
+  			'1',
+        'https://github.com/wbthomason/packer.nvim',
   			install_path,
       }
       vim.cmd [[packadd packer.nvim]]
-    vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
+    vim.cmd 'autocmd BufWritePost plugins.lua source <afile> | PackerCompile'
   
   plugins = (use) ->
-    use { "wbthomason/packer.nvim" }
+    use { 'wbthomason/packer.nvim' }
 
-    use { "pigpigyyy/yuescript-vim" }
+    use { 'pigpigyyy/yuescript-vim' }
 
+    -- Colorscheme
     use {
       'projekt0n/github-nvim-theme',
       config: ->
-        require('github-theme').setup {}
-        vim.cmd [[colorscheme github_dark]]
+        require('github-theme').setup {
+          theme_style: 'dark_default',
+          sidebars: { 'qf', 'vista_kind', 'terminal', 'packer' },
+        }
+        vim.cmd [[colorscheme github_dark_default]]
     }
+
+    -- Neogit
     use {
       'TimUntersberger/neogit',
+      cmd: 'Neogit',
       requires: 'nvim-lua/plenary.nvim',
-      config: -> require("my.plugins.config.neogit")()
+      config: -> require('my.plugins.config.neogit')(),
+    }
+
+    -- Load only when require
+    use { 'nvim-lua/plenary.nvim', module: 'plenary' }
+
+    -- Better icons
+    use {
+      'kyazdani42/nvim-web-devicons',
+      module: 'nvim-web-devicons',
+      config: -> require('nvim-web-devicons').setup { default: true },
+    }
+
+    -- Better Comment
+    use {
+      'numToStr/Comment.nvim',
+      opt: true,
+      keys: { 'gc', 'gcc', 'gbc' },
+      config: -> require('Comment').setup {},
+    }
+
+    -- Easy hopping
+    use {
+      'phaazon/hop.nvim',
+      cmd: { 'HopWord', 'HopChar1' },
+      config: -> require('hop').setup {},
+    }
+
+    -- Easy motion
+    use {
+      'ggandor/lightspeed.nvim',
+      keys: { 's', 'S', 'f', 'F', 't', 'T' },
+      config: -> require('lightspeed').setup {},
+    }
+		
+    -- Markdown
+    use {
+      'iamcco/markdown-preview.nvim',
+      run: -> vim.fn['mkdp#util#install'](),
+      ft: 'markdown',
+      cmd: { 'MarkdownPreview' },
+    }
+
+    -- Lualine
+    use {
+      'nvim-lualine/lualine.nvim',
+      event: 'VimEnter',
+      requires: { 'kyazdani42/nvim-web-devicons', opt: true }
+      config: -> require('my.plugins.config.lualine')(),
+    }
+
+    -- Telescope.nvim
+    use {
+      'nvim-telescope/telescope.nvim',
+      --event: 'VimEnter',
+      branch: '0.1.x',
+      requires: { {'nvim-lua/plenary.nvim'}, { 'kyazdani42/nvim-web-devicons', opt: true } },
+      config: -> require('my.plugins.config.telescope')(),
+    }
+
+    -- Bufferline.nvim
+    use {
+      'akinsho/bufferline.nvim',
+      event: 'BufReadPre',
+      tag: "v3.*",
+      requires: 'nvim-tree/nvim-web-devicons',
+      config: -> require('my.plugins.config.bufferline')(),
+    }
+
+    -- Treesitter
+    use {
+      "nvim-treesitter/nvim-treesitter",
+      opt: true,
+      event: 'BufRead',
+      run: ":TSUpdate",
+      config: -> require("my.plugins.config.treesitter")(),
+    }
+
+    -- nvim-cmp
+    use {
+      'hrsh7th/nvim-cmp',
+      event: 'InsertEnter',
+      opt: true,
+      config: -> require('my.plugins.config.cmp')(),
+      wants: { 'LuaSnip' },
+      requires: {
+        'neovim/nvim-lspconfig',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-cmdline',
+        'saadparwaiz1/cmp_luasnip',
+        {
+          'L3MON4D3/LuaSnip',
+          config: -> require('my.plugins.config.luasnip')(),
+        },
+      },
+    }
+
+    -- Auto pairs
+    use {
+      'windwp/nvim-autopairs',
+      wants: 'nvim-treesitter',
+      module: { 'nvim-autopairs.completion.cmp', 'nvim-autopairs' },
+      config: -> require('my.plugins.config.autopairs')(),
+    }
+
+    -- Auto tag
+    use {
+      'windwp/nvim-ts-autotag',
+      wants: 'nvim-treesitter',
+      event: 'InsertEnter',
+      config: -> require('nvim-ts-autotag').setup { enable: true },
+    }
+
+    -- End wise
+    use {
+      'RRethy/nvim-treesitter-endwise',
+      wants: 'nvim-treesitter',
+      event: 'InsertEnter',
     }
 
   packer_init()
 
-  packer = require "packer"
+  packer = require 'packer'
   packer.init(conf)
   packer.startup(plugins)
 

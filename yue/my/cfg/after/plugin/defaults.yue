@@ -4,22 +4,22 @@ opt = vim.opt
 
 export default ->
   -- Remap leader and local leader to <Space>
-  api.nvim_set_keymap "", "<Space>", "<Nop>", { noremap: true, silent: true }
-  g.mapleader = " "
-  g.maplocalleader = " "
+  api.nvim_set_keymap '', '<Space>', '<Nop>', { noremap: true, silent: true }
+  g.mapleader = ' '
+  g.maplocalleader = ' '
 
   opt.termguicolors = true -- Enable colors in terminal
   opt.hlsearch = true --Set highlight on search
   opt.number = true --Make line numbers default
   opt.relativenumber = true --Make relative number default
-  opt.mouse = "a" --Enable mouse mode
+  opt.mouse = 'a' --Enable mouse mode
   opt.breakindent = true --Enable break indent
   opt.undofile = true --Save undo history
   opt.ignorecase = true --Case insensitive searching unless /C or capital in search
   opt.smartcase = true -- Smart case
   opt.updatetime = 250 --Decrease update time
-  opt.signcolumn = "yes" -- Always show sign column
-  opt.clipboard = "unnamedplus" -- Access system clipboard
+  opt.signcolumn = 'yes' -- Always show sign column
+  opt.clipboard = 'unnamedplus' -- Access system clipboard
 
   opt.wrap = false
 
@@ -30,6 +30,8 @@ export default ->
   opt.smartindent = true
   opt.expandtab = true
   opt.textwidth = 120
+
+  opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
   -- Highlight on yank
   vim.cmd [[

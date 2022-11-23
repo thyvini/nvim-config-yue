@@ -1,3 +1,3 @@
-import "my.plugins" as plugin_setup
+import 'my.plugins' as plugin_setup
 
 plugin_setup()
