@@ -148,6 +148,11 @@ export default ->
       },
     }
 
+    use { 
+      'hrsh7th/cmp-nvim-lsp',
+      module: 'cmp-nvim-lsp',
+    }
+
     -- Auto pairs
     use {
       'windwp/nvim-autopairs',
@@ -169,6 +174,64 @@ export default ->
       'RRethy/nvim-treesitter-endwise',
       wants: 'nvim-treesitter',
       event: 'InsertEnter',
+    }
+
+    -- LSP
+    use {
+      'neovim/nvim-lspconfig',
+      opt: true,
+      event: 'BufReadPre',
+      wants: { 
+        'mason.nvim',
+        'mason-lspconfig.nvim',
+        'mason-tool-installer.nvim',
+        'lsp_signature.nvim',
+        'cmp-nvim-lsp',
+        'typescript.nvim',
+        'Ionide-vim',
+      },
+      config: -> require('my.plugins.config.lsp')(),
+      requires: {
+        'williamboman/mason.nvim',
+        'williamboman/mason-lspconfig.nvim',
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        'ray-x/lsp_signature.nvim',
+        'jose-elias-alvarez/typescript.nvim',
+        'ionide/Ionide-vim',
+      }
+    }
+
+    -- Rust
+    use {
+      'simrat39/rust-tools.nvim',
+      requires: { 'nvim-lua/plenary.nvim', 'rust-lang/rust.vim' },
+      opt: true,
+      module: 'rust-tools',
+      ft: { 'rust' },
+      -- config = function()
+      --   require("config.rust").setup()
+      -- end,
+    }
+
+    use {
+      'saecki/crates.nvim',
+      event: { 'BufRead Cargo.toml' },
+      requires: { { 'nvim-lua/plenary.nvim' } },
+      config: ->
+        -- local null_ls = require "null-ls"
+        require('crates').setup {
+          -- null_ls = {
+          --   enabled = true,
+          --   name = 'crates.nvim',
+          -- },
+        },
+    }
+
+    -- F# |> ❤️
+    use {
+      'ionide/Ionide-vim',
+      ft: { 'fsharp' },
+      config: -> require('my.plugins.config.ionide')(),
     }
 
   packer_init()
