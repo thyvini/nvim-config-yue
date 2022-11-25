@@ -1,0 +1,7 @@
+export default ->
+  require'github-theme'.setup
+    theme_style: 'dark_default'
+    sidebars: { 'qf', 'vista_kind', 'terminal', 'packer' }
+
+  vim.cmd [[colorscheme github_dark_default]]
+

@@ -1,5 +1,5 @@
 export default ->
-  require('telescope').setup {
+  require'telescope'.setup
     defaults:
       file_ignore_patterns: { 'node_modules' }
       vimgrep_arguments:
@@ -12,4 +12,3 @@ export default ->
         * '--smart-case'
         * '--ignore-file'
         * '.gitignore'
-  }

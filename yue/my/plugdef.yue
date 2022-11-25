@@ -1,0 +1,157 @@
+export default {
+  -- Self-manage packer.nvim
+  ['wbthomason/packer.nvim']: {}
+
+  -- Load Yuescript support for easier maintenance
+  ['pigpigyyy/yuescript-vim']: {}
+
+  -- Colorscheme
+  ['projekt0n/github-nvim-theme']:
+    config: -> require'my.plugins.config.theme'()
+      
+  -- Neogit
+  ['TimUntersberger/neogit']:
+    cmd: 'Neogit'
+    requires: 'nvim-lua/plenary.nvim'
+    config: -> require'my.plugins.config.neogit'()
+
+  -- plenary.nvim
+  ['nvim-lua/plenary.nvim']:
+    module: 'plenary'
+
+  -- Better icons
+  ['kyazdani42/nvim-web-devicons']:
+    module: 'nvim-web-devicons'
+    config: -> require'nvim-web-devicons'.setup default: true
+
+  -- Better Comment
+  ['numToStr/Comment.nvim']:
+    opt: true
+    keys: { 'gc', 'gcc', 'gbc' }
+    config: -> require'Comment'.setup {}
+
+  -- Markdown
+  ['iamcco/markdown-preview.nvim']:
+    run: -> vim.fn['mkdp#util#install']()
+    ft: 'markdown'
+    cmd: { 'MarkdownPreview' }
+
+  -- Lualine
+  ['nvim-lualine/lualine.nvim']:
+    event: 'VimEnter'
+    requires: { 'kyazdani42/nvim-web-devicons', opt: true }
+    config: -> require'my.plugins.config.lualine'()
+
+  -- Telescope.nvim
+  ['nvim-telescope/telescope.nvim']:
+    --event: 'VimEnter'
+    branch: '0.1.x'
+    requires: { {'nvim-lua/plenary.nvim'}, { 'kyazdani42/nvim-web-devicons', opt: true } }
+    config: -> require'my.plugins.config.telescope'()
+
+  -- Bufferline.nvim
+  ['akinsho/bufferline.nvim']:
+    event: 'BufReadPre'
+    tag: 'v3.*'
+    requires: 'nvim-tree/nvim-web-devicons'
+    config: -> require'my.plugins.config.bufferline'()
+
+  -- Treesitter
+  ['nvim-treesitter/nvim-treesitter']:
+    opt: true
+    event: 'BufRead'
+    run: ':TSUpdate'
+    config: -> require'my.plugins.config.treesitter'()
+
+  -- nvim-cmp
+  ['hrsh7th/nvim-cmp']:
+    event: 'InsertEnter'
+    opt: true
+    config: -> require'my.plugins.config.cmp'()
+    wants: { 'LuaSnip' }
+    requires:
+      * 'neovim/nvim-lspconfig'
+      * 'hrsh7th/cmp-nvim-lsp'
+      * 'hrsh7th/cmp-buffer'
+      * 'hrsh7th/cmp-path'
+      * 'hrsh7th/cmp-cmdline'
+      * 'saadparwaiz1/cmp_luasnip'
+      * { 'L3MON4D3/LuaSnip', config: -> require'my.plugins.config.luasnip'() }
+
+  ['hrsh7th/cmp-nvim-lsp']:
+    module: 'cmp-nvim-lsp'
+
+  -- Auto pairs
+  ['windwp/nvim-autopairs']:
+    wants: 'nvim-treesitter'
+    module: { 'nvim-autopairs.completion.cmp', 'nvim-autopairs' }
+    config: -> require'my.plugins.config.autopairs'()
+
+  -- Auto tag
+  ['windwp/nvim-ts-autotag']:
+    wants: 'nvim-treesitter'
+    event: 'InsertEnter'
+    config: -> require'nvim-ts-autotag'.setup enable: true
+
+  -- End wise
+  ['RRethy/nvim-treesitter-endwise']:
+    wants: 'nvim-treesitter'
+    event: 'InsertEnter'
+
+  -- LSP
+  ['neovim/nvim-lspconfig']:
+    opt: true
+    event: 'BufReadPre'
+    wants:
+      * 'mason.nvim'
+      * 'mason-lspconfig.nvim'
+      * 'mason-tool-installer.nvim'
+      * 'lsp_signature.nvim'
+      * 'cmp-nvim-lsp'
+      * 'typescript.nvim'
+      * 'Ionide-vim'
+    config: -> require'my.plugins.config.lsp'()
+    requires:
+      * 'williamboman/mason.nvim'
+      * 'williamboman/mason-lspconfig.nvim'
+      * 'WhoIsSethDaniel/mason-tool-installer.nvim'
+      * 'ray-x/lsp_signature.nvim'
+      * 'jose-elias-alvarez/typescript.nvim'
+      * 'ionide/Ionide-vim'
+
+  -- vim-illuminate
+  ['RRethy/vim-illuminate']:
+    event: 'VimEnter'
+
+  -- Rust
+  ['simrat39/rust-tools.nvim']:
+    requires: { 'nvim-lua/plenary.nvim', 'rust-lang/rust.vim' }
+    opt: true
+    module: 'rust-tools'
+    ft: { 'rust' }
+
+  ['saecki/crates.nvim']:
+    event: { 'BufRead Cargo.toml' }
+    requires: { { 'nvim-lua/plenary.nvim' } }
+    config: -> require'crates'.setup {}
+
+  -- F# |> ❤️
+  ['ionide/Ionide-vim']:
+    ft: { 'fsharp' }
+    wants: { 'neofsharp.vim' }
+    config: -> require'my.plugins.config.ionide'()
+    requires: { 'adelarsq/neofsharp.vim' }
+
+  -- trouble.nvim
+  ['folke/trouble.nvim']:
+    wants: 'nvim-web-devicons'
+    event: 'BufReadPre'
+    requires: { 'kyazdani42/nvim-web-devicons' }
+    config: -> require'trouble'.setup use_diagnostic_signs: true
+
+  -- lspsaga.nvim
+  ['tami5/lspsaga.nvim']:
+    event: 'VimEnter'
+    cmd: { 'Lspsaga' }
+    config: -> require'lspsaga'.setup {}
+}

@@ -1,6 +1,5 @@
-api = vim.api
-g = vim.g
-opt = vim.opt
+import 'my.utils' as :set
+import g, api, cmd from vim
 
 export default ->
   -- Remap leader and local leader to <Space>
@@ -8,33 +7,34 @@ export default ->
   g.mapleader = ' '
   g.maplocalleader = ' '
 
-  opt.termguicolors = true -- Enable colors in terminal
-  opt.hlsearch = true --Set highlight on search
-  opt.number = true --Make line numbers default
-  opt.relativenumber = true --Make relative number default
-  opt.mouse = 'a' --Enable mouse mode
-  opt.breakindent = true --Enable break indent
-  opt.undofile = true --Save undo history
-  opt.ignorecase = true --Case insensitive searching unless /C or capital in search
-  opt.smartcase = true -- Smart case
-  opt.updatetime = 250 --Decrease update time
-  opt.signcolumn = 'yes' -- Always show sign column
-  opt.clipboard = 'unnamedplus' -- Access system clipboard
+  set
+    termguicolors: true -- Enable colors in terminal
+    hlsearch: true --Set highlight on search
+    number: true --Make line numbers default
+    relativenumber: true --Make relative number default
+    mouse: 'a' --Enable mouse mode
+    breakindent: true --Enable break indent
+    undofile: true --Save undo history
+    ignorecase: true --Case insensitive searching unless /C or capital in search
+    smartcase: true -- Smart case
+    updatetime: 250 --Decrease update time
+    signcolumn: 'yes' -- Always show sign column
+    clipboard: 'unnamedplus' -- Access system clipboard
 
-  opt.wrap = false
+    wrap: false
 
-  opt.shiftwidth = 2
-  opt.tabstop = 2
-  opt.softtabstop = 2
-  opt.smarttab = true
-  opt.smartindent = true
-  opt.expandtab = true
-  opt.textwidth = 120
+    shiftwidth: 2
+    tabstop: 2
+    softtabstop: 2
+    smarttab: true
+    smartindent: true
+    expandtab: true
+    textwidth: 120
 
-  opt.completeopt = { 'menu', 'menuone', 'noselect' }
+    completeopt: { 'menu', 'menuone', 'noselect' }
 
   -- Highlight on yank
-  vim.cmd [[
+  cmd [[
     augroup YankHighlight
       autocmd!
       autocmd TextYankPost * silent! lua vim.highlight.on_yank()

@@ -13,3 +13,7 @@ export path_expand = (path)->
   path_separator = get_os() == 'Windows' and '\\' or '/'
   path = type(path) == 'table' and table.concat(path, path_separator)
   vim.fn.expand path
+
+export set = (opts) ->
+  for opt, v in pairs opts
+    vim.opt[opt] = v

@@ -4,4 +4,4 @@ export default ->
   g['fsharp#fsautocomplete_command'] = { 'fsautocomplete', '--adaptive-lsp-server-enabled' }
   g['fsharp#lsp_auto_setup'] = 0
 
-  require('ionide').setup {}
+  require'ionide'.setup {}
