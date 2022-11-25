@@ -201,6 +201,12 @@ export default ->
       }
     }
 
+    -- vim-illuminate
+    use {
+      'RRethy/vim-illuminate',
+      event: 'VimEnter',
+    }
+
     -- Rust
     use {
       'simrat39/rust-tools.nvim',
@@ -231,7 +237,9 @@ export default ->
     use {
       'ionide/Ionide-vim',
       ft: { 'fsharp' },
+      wants: { 'neofsharp.vim' },
       config: -> require('my.plugins.config.ionide')(),
+      requires: { 'adelarsq/neofsharp.vim' }
     }
 
   packer_init()

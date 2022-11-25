@@ -1,6 +1,8 @@
+setkey = vim.keymap.set
+default_opts = noremap: true, silent: true
+
 configure_telescope_keys = ->
   import 'telescope.builtin' as builtin
-  setkey = vim.keymap.set
 
   setkey 'n', '<leader>ff', builtin.find_files, {}
   setkey 'n', '<leader>fg', builtin.live_grep, {}
@@ -8,4 +10,6 @@ configure_telescope_keys = ->
   setkey 'n', '<leader>fh', builtin.help_tags, {}
 
 export default ->
+  setkey 'n', '<ESC>', ':nohlsearch<Bar>:echo<CR>', default_opts
+
   configure_telescope_keys()
