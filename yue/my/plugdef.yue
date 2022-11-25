@@ -44,7 +44,9 @@ export default {
 
   -- Telescope.nvim
   ['nvim-telescope/telescope.nvim']:
-    --event: 'VimEnter'
+    opt: true
+    cmd: { 'Telescope' }
+    module: { 'telescope', 'telescope.builtin' }
     branch: '0.1.x'
     requires: { {'nvim-lua/plenary.nvim'}, { 'kyazdani42/nvim-web-devicons', opt: true } }
     config: -> require'my.plugins.config.telescope'()
@@ -154,4 +156,9 @@ export default {
     event: 'VimEnter'
     cmd: { 'Lspsaga' }
     config: -> require'lspsaga'.setup {}
+
+  -- which-key.nvim
+  ['folke/which-key.nvim']:
+    event: 'VimEnter'
+    config: -> require'my.plugins.config.whichkey'()
 }

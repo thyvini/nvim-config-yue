@@ -1,0 +1,57 @@
+import 'telescope.builtin' as builtin
+
+find =
+  name: 'Find'
+  f: { builtin.find_files, 'Files' }
+  g: { builtin.live_grep, 'Live Grep' }
+  b: { builtin.buffers, 'Buffers' }
+  h: { builtin.help_tags, 'Help Tags' }
+
+lang_opts =
+  name: 'Code (LSP)'
+  R: { '<cmd>Trouble lsp_references<cr>', 'Trouble References' }
+  a: { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action' }
+  d: { '<cmd>Telescope diagnostics<CR>', 'Diagnostics' }
+  f: { '<cmd>Lspsaga lsp_finder<CR>', 'Finder' }
+  i: { '<cmd>LspInfo<CR>', 'Lsp Info' }
+  n: { '<cmd>Lspsaga rename<CR>', 'Rename' }
+  r: { '<cmd>Telescope lsp_references<CR>', 'Diagnostics' }
+  t: { '<cmd>TroubleToggle<CR>', 'Trouble' }
+  g:
+    name: 'Goto'
+    d: { '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Definition' }
+    D: { '<Cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' }
+    h: { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature Help' }
+    I: { '<cmd>Telescope lsp_implementations<CR>', 'Goto Implementation' }
+    b: { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Goto Type Definition' }
+
+leader_mappings =
+  f: find
+  l: lang_opts
+
+leader_opts =
+  mode: 'n'
+  prefix: '<leader>'
+  buffer: nil
+  silent: true
+  noremap: true
+  nowait: false
+
+noleader_mappings =
+  K: { '<cmd>Lspsaga hover-doc<cr>', 'Documentation' }
+
+noleader_opts =
+  mode: 'n'
+  prefix: ''
+  buffer: nil
+  silent: true
+  noremap: true
+  nowait: false
+
+export default ->
+  wk = require 'which-key'
+
+  wk.register leader_mappings, leader_opts
+  wk.register noleader_mappings, noleader_opts
+
+
