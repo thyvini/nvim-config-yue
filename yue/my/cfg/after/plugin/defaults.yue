@@ -7,6 +7,9 @@ export default ->
   g.mapleader = ' '
   g.maplocalleader = ' '
 
+  g.loaded_netrw = 1
+  g.loaded_netrwPlugin = 1
+
   set
     termguicolors: true -- Enable colors in terminal
     hlsearch: true --Set highlight on search

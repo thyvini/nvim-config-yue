@@ -6,6 +6,7 @@ find =
   g: { builtin.live_grep, 'Live Grep' }
   b: { builtin.buffers, 'Buffers' }
   h: { builtin.help_tags, 'Help Tags' }
+  e: { '<cmd>NvimTreeToggle<CR>', 'File Explorer' }
 
 lang_opts =
   name: 'Code (LSP)'
@@ -19,7 +20,7 @@ lang_opts =
   t: { '<cmd>TroubleToggle<CR>', 'Trouble' }
   g:
     name: 'Goto'
-    d: { '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Definition' }
+    d: { builtin.lsp_definitions, 'Definition' }
     D: { '<Cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' }
     h: { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature Help' }
     I: { '<cmd>Telescope lsp_implementations<CR>', 'Goto Implementation' }
@@ -38,7 +39,7 @@ leader_opts =
   nowait: false
 
 noleader_mappings =
-  K: { '<cmd>Lspsaga hover-doc<cr>', 'Documentation' }
+  K: { '<cmd>Lspsaga hover_doc<cr>', 'Documentation' }
 
 noleader_opts =
   mode: 'n'
@@ -53,5 +54,4 @@ export default ->
 
   wk.register leader_mappings, leader_opts
   wk.register noleader_mappings, noleader_opts
-
 

@@ -1,10 +1,16 @@
 servers =
   html: {}
-  jsonls: {}
+  jsonls:
+    settings:
+      json:
+        schemas: require'schemastore'.json.schemas()
   rust_analyzer: {}
   sumneko_lua: {}
   tsserver: {}
-  omnisharp: {}
+  angularls: {}
+  csharp_ls:
+    handlers:
+      ['textDocument/definition']: require('csharpls_extended').handler
 
 on_attach = (client, bufnr) ->
   -- Enable completion triggered by <C-X><C-O>
@@ -16,6 +22,7 @@ on_attach = (client, bufnr) ->
   vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
 
 capabilities = require'cmp_nvim_lsp'.default_capabilities()
+capabilities.offset_encoding = 'utf-8'
 
 opts =
   :on_attach
