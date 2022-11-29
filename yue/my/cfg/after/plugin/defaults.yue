@@ -24,6 +24,8 @@ export default ->
     signcolumn: 'yes' -- Always show sign column
     clipboard: 'unnamedplus' -- Access system clipboard
 
+    timeoutlen: 300
+
     wrap: false
 
     shiftwidth: 2

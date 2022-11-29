@@ -167,7 +167,7 @@ export default {
     config: -> require'my.plugins.config.whichkey'()
 
   ['nvim-tree/nvim-tree.lua']:
-    cmd: { 'NvimTreeToggle', 'NvimTreeClose' }
+    event: 'BufEnter'
     requires: { 'kyazdani42/nvim-web-devicons' }
     tag: 'nightly'
     config: -> require'my.plugins.config.nvimtree'()
