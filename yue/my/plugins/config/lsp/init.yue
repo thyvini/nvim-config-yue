@@ -1,3 +1,5 @@
+pid = vim.fn.getpid()
+
 servers =
   html: {}
   jsonls:
@@ -8,9 +10,10 @@ servers =
   sumneko_lua: {}
   tsserver: {}
   angularls: {}
-  csharp_ls:
+  omnisharp:
     handlers:
-      ['textDocument/definition']: require('csharpls_extended').handler
+      ['textDocument/definition']: vim.lsp.with(require('omnisharp_extended').handler_telescope)
+    cmd: { 'omnisharp', '--languageserver', '--hostPID', tostring(pid), '--encoding', 'utf-16' }
 
 on_attach = (client, bufnr) ->
   -- Enable completion triggered by <C-X><C-O>
@@ -22,7 +25,6 @@ on_attach = (client, bufnr) ->
   vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
 
 capabilities = require'cmp_nvim_lsp'.default_capabilities()
-capabilities.offset_encoding = 'utf-8'
 
 opts =
   :on_attach

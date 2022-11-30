@@ -112,8 +112,8 @@ export default {
       * 'cmp-nvim-lsp'
       * 'typescript.nvim'
       * 'Ionide-vim'
-      * 'csharpls-extended-lsp.nvim'
       * 'schemastore.nvim'
+      * 'omnisharp-extended-lsp.nvim'
     config: -> require'my.plugins.config.lsp'()
     requires:
       * 'williamboman/mason.nvim'
@@ -122,8 +122,8 @@ export default {
       * 'ray-x/lsp_signature.nvim'
       * 'jose-elias-alvarez/typescript.nvim'
       * 'ionide/Ionide-vim'
-      * 'Decodetalkers/csharpls-extended-lsp.nvim'
       * 'b0o/schemastore.nvim'
+      * 'Hoffs/omnisharp-extended-lsp.nvim'
 
   -- vim-illuminate
   ['RRethy/vim-illuminate']:

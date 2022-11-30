@@ -27,9 +27,8 @@ export setup = (servers, options) ->
   require('mason-lspconfig').setup_handlers {
     (server_name) ->
       opts = vim.tbl_deep_extend('force', options, servers[server_name] or {})
-      opts.capabilities.offset_encoding = 'utf-8'
-      opts.offset_encoding = 'utf-8'
       lspconfig[server_name].setup { ...opts }
+
     ['rust_analyzer']: ->
       opts = vim.tbl_deep_extend('force', options, servers['rust_analyzer'] or {})
 
