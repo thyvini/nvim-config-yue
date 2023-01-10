@@ -48,8 +48,15 @@ export default {
     cmd: { 'Telescope' }
     module: { 'telescope', 'telescope.builtin' }
     branch: '0.1.x'
-    requires: { {'nvim-lua/plenary.nvim'}, { 'kyazdani42/nvim-web-devicons', opt: true } }
     config: -> require'my.plugins.config.telescope'()
+    wants: 
+      * 'plenary.nvim'
+      * 'nvim-web-devicons'
+      * 'telescope-dap.nvim'
+    requires:
+      * { 'nvim-lua/plenary.nvim' }
+      * { 'kyazdani42/nvim-web-devicons', opt: true }
+      * 'nvim-telescope/telescope-dap.nvim'
 
   -- Bufferline.nvim
   ['akinsho/bufferline.nvim']:
@@ -166,9 +173,25 @@ export default {
     event: 'VimEnter'
     config: -> require'my.plugins.config.whichkey'()
 
+  -- nvim-tree
   ['nvim-tree/nvim-tree.lua']:
     event: 'BufEnter'
     requires: { 'kyazdani42/nvim-web-devicons' }
     tag: 'nightly'
     config: -> require'my.plugins.config.nvimtree'()
+
+  -- nvim-dap
+  ['mfussenegger/nvim-dap']:
+    opt: true
+    event: 'BufReadPre'
+    module: { 'dap' }
+    config: -> require'my.plugins.config.dap'()
+    wants:
+      * 'nvim-dap-ui'
+      * 'nvim-dap-virtual-text'
+      * 'telescope-dap.nvim'
+    requires:
+      * 'rcarriga/nvim-dap-ui'
+      * 'theHamsta/nvim-dap-virtual-text'
+      * 'nvim-telescope/telescope-dap.nvim'
 }

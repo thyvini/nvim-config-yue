@@ -1,0 +1,42 @@
+configure = ->
+  dap_breakpoint =
+    error:
+      text: '🟥'
+      texthl: 'LspDiagnosticsSignError'
+      linehl: ''
+      numhl: ''
+    rejected:
+      text: ''
+      texthl: 'LspDiagnosticsSignHint'
+      linehl: ''
+      numhl: ''
+    stopped:
+      text: '⭐️'
+      texthl: 'LspDiagnosticsSignInformation'
+      linehl: 'DiagnosticUnderlineInfo'
+      numhl: 'LspDiagnosticsSignInformation'
+
+  vim.fn.sign_define('DapBreakpoint', dap_breakpoint.error)
+  vim.fn.sign_define('DapStopped', dap_breakpoint.stopped)
+  vim.fn.sign_define('DapBreakpointRejected', dap_breakpoint.rejected)
+
+configure_extensions = ->
+  require'nvim-dap-virtual-text'.setup commented: true
+
+  dap = require 'dap'
+  dapui = require 'dapui'
+
+  dapui.setup {}
+
+  dap.listeners.after.event_initialized['dapui_config'] = -> dapui.open()
+  dap.listeners.after.event_terminated['dapui_config'] = -> dapui.close()
+  dap.listeners.after.event_exited['dapui_config'] = -> dapui.close()
+
+configure_debuggers = ->
+  require'my.plugins.config.dap.csharp'()
+
+export default ->
+  configure()
+  configure_extensions()
+  configure_debuggers()
+
