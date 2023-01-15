@@ -64,6 +64,8 @@ leader_opts =
 
 noleader_mappings =
   K: { '<cmd>Lspsaga hover_doc<cr>', 'Documentation' }
+  '<c-L>': { '<cmd>bnext<CR>', 'Go to next buffer' }
+  '<c-H>': { '<cmd>bprevious<CR>', 'Go to previous buffer' }
 
 noleader_opts =
   mode: 'n'
