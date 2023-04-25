@@ -1,13 +1,15 @@
 pid = vim.fn.getpid()
 
 servers =
+  cssls: {}
   html: {}
+  emmet_ls: {}
   jsonls:
     settings:
       json:
         schemas: require'schemastore'.json.schemas()
   rust_analyzer: {}
-  sumneko_lua: {}
+  -- sumneko_lua: {}
   tsserver: {}
   angularls: {}
   omnisharp:

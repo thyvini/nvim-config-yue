@@ -194,4 +194,19 @@ export default {
       * 'rcarriga/nvim-dap-ui'
       * 'theHamsta/nvim-dap-virtual-text'
       * 'nvim-telescope/telescope-dap.nvim'
+
+  -- editorconfig
+  ['gpanders/editorconfig.nvim']:
+    opt: true
+    config: -> require'editorconfig'
+
+  -- LISP & Friends
+  ['Olical/conjure']:
+    opt: true
+    ft:
+      * 'lisp'
+      * 'clojure'
+      * 'racket'
+      * 'scheme'
+    config: -> require'conjure'
 }
