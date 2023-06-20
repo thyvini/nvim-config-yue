@@ -4,6 +4,7 @@ servers =
   cssls: {}
   html: {}
   emmet_ls: {}
+  hls: {}
   jsonls:
     settings:
       json:
