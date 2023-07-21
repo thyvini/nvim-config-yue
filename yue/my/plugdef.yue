@@ -6,7 +6,8 @@ export default {
   ['pigpigyyy/yuescript-vim']: {}
 
   -- Colorscheme
-  ['projekt0n/github-nvim-theme']:
+  ['catppuccin/nvim']:
+    as: 'catppuccin'
     config: -> require'my.plugins.config.theme'()
       
   -- Neogit
