@@ -49,10 +49,20 @@ debug =
   x: { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" }
   u: { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" }
 
+git =
+  name: 'Git'
+  g: 
+    * "<cmd>lua require'neogit'.open({ kind = 'replace' })<cr>"
+    * "Open Menu"
+  c: 
+    * "<cmd>lua require'neogit'.open({ 'commit' })<cr>"
+    * "Commit"
+
 leader_mappings =
   f: find
   l: lang_opts
   d: debug
+  g: git
 
 leader_opts =
   mode: 'n'

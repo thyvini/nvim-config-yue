@@ -12,6 +12,7 @@ export default {
   -- Neogit
   ['TimUntersberger/neogit']:
     cmd: 'Neogit'
+    module: 'neogit'
     requires: 'nvim-lua/plenary.nvim'
     config: -> require'my.plugins.config.neogit'()
 
@@ -20,7 +21,7 @@ export default {
     module: 'plenary'
 
   -- Better icons
-  ['kyazdani42/nvim-web-devicons']:
+  ['nvim-tree/nvim-web-devicons']:
     module: 'nvim-web-devicons'
     config: -> require'nvim-web-devicons'.setup default: true
 
@@ -39,7 +40,7 @@ export default {
   -- Lualine
   ['nvim-lualine/lualine.nvim']:
     event: 'VimEnter'
-    requires: { 'kyazdani42/nvim-web-devicons', opt: true }
+    requires: { 'nvim-tree/nvim-web-devicons', opt: true }
     config: -> require'my.plugins.config.lualine'()
 
   -- Telescope.nvim
@@ -55,13 +56,13 @@ export default {
       * 'telescope-dap.nvim'
     requires:
       * { 'nvim-lua/plenary.nvim' }
-      * { 'kyazdani42/nvim-web-devicons', opt: true }
+      * { 'nvim-tree/nvim-web-devicons', opt: true }
       * 'nvim-telescope/telescope-dap.nvim'
 
   -- Bufferline.nvim
   ['akinsho/bufferline.nvim']:
     event: 'BufReadPre'
-    tag: 'v3.*'
+    tag: 'v4.*'
     requires: 'nvim-tree/nvim-web-devicons'
     config: -> require'my.plugins.config.bufferline'()
 
@@ -159,7 +160,7 @@ export default {
   ['folke/trouble.nvim']:
     wants: 'nvim-web-devicons'
     event: 'BufReadPre'
-    requires: { 'kyazdani42/nvim-web-devicons' }
+    requires: { 'nvim-tree/nvim-web-devicons' }
     config: -> require'trouble'.setup use_diagnostic_signs: true
 
   -- lspsaga.nvim
@@ -176,7 +177,7 @@ export default {
   -- nvim-tree
   ['nvim-tree/nvim-tree.lua']:
     event: 'BufEnter'
-    requires: { 'kyazdani42/nvim-web-devicons' }
+    requires: { 'nvim-tree/nvim-web-devicons' }
     tag: 'nightly'
     config: -> require'my.plugins.config.nvimtree'()
 
@@ -199,13 +200,4 @@ export default {
   ['gpanders/editorconfig.nvim']:
     opt: true
     config: -> require'editorconfig'
-
-  -- LISP & Friends
-  ['Olical/conjure']:
-    opt: true
-    ft:
-      * 'lisp'
-      * 'clojure'
-      * 'racket'
-      * 'scheme'
 }
