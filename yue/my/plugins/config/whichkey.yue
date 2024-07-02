@@ -20,7 +20,7 @@ lang_opts =
   t: { '<cmd>TroubleToggle<CR>', 'Trouble' }
   g:
     name: 'Goto'
-    d: { '<cmd>lua require("omnisharp_extended").telescope_lsp_definitions()<CR>', 'Definition' }
+    d: { '<cmd>lua vim.lsp.buf.definition()<CR>', 'Definition' }
     D: { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' }
     h: { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature Help' }
     I: { '<cmd>Telescope lsp_implementations<CR>', 'Goto Implementation' }

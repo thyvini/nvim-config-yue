@@ -165,7 +165,7 @@ export default {
     config: -> require'trouble'.setup use_diagnostic_signs: true
 
   -- lspsaga.nvim
-  ['tami5/lspsaga.nvim']:
+  ['nvimdev/lspsaga.nvim']:
     event: 'VimEnter'
     cmd: { 'Lspsaga' }
     config: -> require'lspsaga'.setup {}
@@ -178,7 +178,7 @@ export default {
   -- nvim-tree
   ['nvim-tree/nvim-tree.lua']:
     event: 'BufEnter'
-    requires: { 'nvim-tree/nvim-web-devicons' }
+    requires: { 'nvim-tree/nvim-web-devicons', 'antosha417/nvim-lsp-file-operations' }
     tag: 'nightly'
     config: -> require'my.plugins.config.nvimtree'()
 
@@ -192,10 +192,12 @@ export default {
       * 'nvim-dap-ui'
       * 'nvim-dap-virtual-text'
       * 'telescope-dap.nvim'
+      * 'nvim-nio'
     requires:
       * 'rcarriga/nvim-dap-ui'
       * 'theHamsta/nvim-dap-virtual-text'
       * 'nvim-telescope/telescope-dap.nvim'
+      * 'nvim-neotest/nvim-nio'
 
   -- editorconfig
   ['gpanders/editorconfig.nvim']:

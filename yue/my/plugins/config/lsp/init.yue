@@ -4,15 +4,17 @@ servers =
   cssls: {}
   html: {}
   emmet_ls: {}
-  hls: {}
   jsonls:
     settings:
       json:
         schemas: require'schemastore'.json.schemas()
   rust_analyzer: {}
-  -- sumneko_lua: {}
   tsserver: {}
   angularls: {}
+  eslint:
+    validate: 'on'
+    format:
+      enable: true
   omnisharp:
     handlers:
       ['textDocument/definition']: vim.lsp.with(require('omnisharp_extended').handler_telescope)
