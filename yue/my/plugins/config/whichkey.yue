@@ -13,11 +13,10 @@ lang_opts =
   R: { '<cmd>Trouble lsp_references<cr>', 'Trouble References' }
   a: { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action' }
   d: { '<cmd>Telescope diagnostics<CR>', 'Diagnostics' }
-  f: { '<cmd>Lspsaga lsp_finder<CR>', 'Finder' }
+  f: { '<cmd>Lspsaga finder<CR>', 'Finder' }
   i: { '<cmd>LspInfo<CR>', 'Lsp Info' }
   n: { '<cmd>Lspsaga rename<CR>', 'Rename' }
   r: { '<cmd>Telescope lsp_references<CR>', 'Diagnostics' }
-  t: { '<cmd>TroubleToggle<CR>', 'Trouble' }
   g:
     name: 'Goto'
     d: { '<cmd>lua vim.lsp.buf.definition()<CR>', 'Definition' }
