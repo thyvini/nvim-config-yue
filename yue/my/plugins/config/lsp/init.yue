@@ -9,7 +9,7 @@ servers =
       json:
         schemas: require'schemastore'.json.schemas()
   rust_analyzer: {}
-  tsserver: {}
+  ts_ls: {}
   angularls: {}
   eslint:
     validate: 'on'

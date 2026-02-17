@@ -49,7 +49,7 @@ export default {
     opt: true
     cmd: { 'Telescope' }
     module: { 'telescope', 'telescope.builtin' }
-    branch: '0.1.x'
+    release: '0.2.1'
     config: -> require'my.plugins.config.telescope'()
     wants: 
       * 'plenary.nvim'
@@ -125,8 +125,8 @@ export default {
       * 'omnisharp-extended-lsp.nvim'
     config: -> require'my.plugins.config.lsp'()
     requires:
-      * 'williamboman/mason.nvim'
-      * 'williamboman/mason-lspconfig.nvim'
+      * { 'mason-org/mason.nvim', branch: 'v1.x' }
+      * { 'mason-org/mason-lspconfig.nvim', branch: 'v1.x' }
       * 'WhoIsSethDaniel/mason-tool-installer.nvim'
       * 'ray-x/lsp_signature.nvim'
       * 'jose-elias-alvarez/typescript.nvim'
@@ -179,7 +179,7 @@ export default {
   ['nvim-tree/nvim-tree.lua']:
     event: 'BufEnter'
     requires: { 'nvim-tree/nvim-web-devicons', 'antosha417/nvim-lsp-file-operations' }
-    tag: 'nightly'
+    -- tag: 'nightly'
     config: -> require'my.plugins.config.nvimtree'()
 
   -- nvim-dap
@@ -202,5 +202,5 @@ export default {
   -- editorconfig
   ['gpanders/editorconfig.nvim']:
     opt: true
-    config: -> require'editorconfig'
+    config: -> require'editorconfig'()
 }
