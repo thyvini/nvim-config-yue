@@ -1,1 +1,1 @@
-vendor/nvim-moonwalk/lua/moonwalk.lua
+../../vendor/nvim-moonwalk/lua/moonwalk.lua

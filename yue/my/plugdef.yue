@@ -1,20 +1,17 @@
-export default {
-  -- Self-manage packer.nvim
-  ['wbthomason/packer.nvim']: {}
-
+export plugdef = {
   -- Load Yuescript support for easier maintenance
   ['pigpigyyy/yuescript-vim']: {}
 
   -- Colorscheme
   ['catppuccin/nvim']:
-    as: 'catppuccin'
+    name: 'catppuccin'
     config: -> require'my.plugins.config.theme'()
       
   -- Neogit
   ['TimUntersberger/neogit']:
     cmd: 'Neogit'
     module: 'neogit'
-    requires: 'nvim-lua/plenary.nvim'
+    dependencies: 'nvim-lua/plenary.nvim'
     config: -> require'my.plugins.config.neogit'()
 
   -- plenary.nvim
@@ -28,59 +25,54 @@ export default {
 
   -- Better Comment
   ['numToStr/Comment.nvim']:
-    opt: true
+    lazy: true
     keys: { 'gc', 'gcc', 'gbc' }
     config: -> require'Comment'.setup {}
 
   -- Markdown
   ['iamcco/markdown-preview.nvim']:
-    run: -> vim.fn['mkdp#util#install']()
+    build: -> vim.fn['mkdp#util#install']()
     ft: 'markdown'
     cmd: { 'MarkdownPreview' }
 
   -- Lualine
   ['nvim-lualine/lualine.nvim']:
     event: 'VimEnter'
-    requires: { 'nvim-tree/nvim-web-devicons', opt: true }
+    dependencies: { 'nvim-tree/nvim-web-devicons', lazy: true }
     config: -> require'my.plugins.config.lualine'()
 
   -- Telescope.nvim
   ['nvim-telescope/telescope.nvim']:
-    opt: true
+    lazy: true
     cmd: { 'Telescope' }
     module: { 'telescope', 'telescope.builtin' }
-    release: '0.2.1'
+    version: '*'
     config: -> require'my.plugins.config.telescope'()
-    wants: 
-      * 'plenary.nvim'
-      * 'nvim-web-devicons'
-      * 'telescope-dap.nvim'
-    requires:
+    dependencies:
       * { 'nvim-lua/plenary.nvim' }
-      * { 'nvim-tree/nvim-web-devicons', opt: true }
+      * { 'nvim-tree/nvim-web-devicons', lazy: true }
       * 'nvim-telescope/telescope-dap.nvim'
 
   -- Bufferline.nvim
   ['akinsho/bufferline.nvim']:
     event: 'BufReadPre'
     tag: 'v4.*'
-    requires: 'nvim-tree/nvim-web-devicons'
+    dependencies: 'nvim-tree/nvim-web-devicons'
     config: -> require'my.plugins.config.bufferline'()
 
   -- Treesitter
   ['nvim-treesitter/nvim-treesitter']:
-    opt: true
+    lazy: true
     event: 'BufRead'
-    run: ':TSUpdate'
+    build: ':TSUpdate'
     config: -> require'my.plugins.config.treesitter'()
 
   -- nvim-cmp
   ['hrsh7th/nvim-cmp']:
     event: 'InsertEnter'
-    opt: true
+    lazy: true
     config: -> require'my.plugins.config.cmp'()
-    wants: { 'LuaSnip' }
-    requires:
+    dependencies:
       * 'neovim/nvim-lspconfig'
       * 'hrsh7th/cmp-nvim-lsp'
       * 'hrsh7th/cmp-buffer'
@@ -94,37 +86,27 @@ export default {
 
   -- Auto pairs
   ['windwp/nvim-autopairs']:
-    wants: 'nvim-treesitter'
+    dependencies: 'nvim-treesitter/nvim-treesitter'
     module: { 'nvim-autopairs.completion.cmp', 'nvim-autopairs' }
     config: -> require'my.plugins.config.autopairs'()
 
   -- Auto tag
   ['windwp/nvim-ts-autotag']:
-    wants: 'nvim-treesitter'
+    dependencies: 'nvim-treesitter/nvim-treesitter'
     event: 'InsertEnter'
     config: -> require'nvim-ts-autotag'.setup enable: true
 
   -- End wise
   ['RRethy/nvim-treesitter-endwise']:
-    wants: 'nvim-treesitter'
+    dependencies: 'nvim-treesitter/nvim-treesitter'
     event: 'InsertEnter'
 
   -- LSP
   ['neovim/nvim-lspconfig']:
-    opt: true
+    lazy: true
     event: 'BufReadPre'
-    wants:
-      * 'mason.nvim'
-      * 'mason-lspconfig.nvim'
-      * 'mason-tool-installer.nvim'
-      * 'lsp_signature.nvim'
-      * 'cmp-nvim-lsp'
-      * 'typescript.nvim'
-      * 'Ionide-vim'
-      * 'schemastore.nvim'
-      * 'omnisharp-extended-lsp.nvim'
     config: -> require'my.plugins.config.lsp'()
-    requires:
+    dependencies:
       * { 'mason-org/mason.nvim', branch: 'v1.x' }
       * { 'mason-org/mason-lspconfig.nvim', branch: 'v1.x' }
       * 'WhoIsSethDaniel/mason-tool-installer.nvim'
@@ -140,28 +122,26 @@ export default {
 
   -- Rust
   ['simrat39/rust-tools.nvim']:
-    requires: { 'nvim-lua/plenary.nvim', 'rust-lang/rust.vim' }
-    opt: true
+    dependencies: { 'nvim-lua/plenary.nvim', 'rust-lang/rust.vim' }
+    lazy: true
     module: 'rust-tools'
     ft: { 'rust' }
 
   ['saecki/crates.nvim']:
     event: { 'BufRead Cargo.toml' }
-    requires: { { 'nvim-lua/plenary.nvim' } }
+    dependencies: { { 'nvim-lua/plenary.nvim' } }
     config: -> require'crates'.setup {}
 
   -- F# |> ❤️
   ['ionide/Ionide-vim']:
     ft: { 'fsharp' }
-    wants: { 'neofsharp.vim' }
     config: -> require'my.plugins.config.ionide'()
-    requires: { 'adelarsq/neofsharp.vim' }
+    dependencies: { 'adelarsq/neofsharp.vim' }
 
   -- trouble.nvim
   ['folke/trouble.nvim']:
-    wants: 'nvim-web-devicons'
     event: 'BufReadPre'
-    requires: { 'nvim-tree/nvim-web-devicons' }
+    dependencies: { 'nvim-tree/nvim-web-devicons' }
     config: -> require'trouble'.setup use_diagnostic_signs: true
 
   -- lspsaga.nvim
@@ -178,22 +158,16 @@ export default {
   -- nvim-tree
   ['nvim-tree/nvim-tree.lua']:
     event: 'BufEnter'
-    requires: { 'nvim-tree/nvim-web-devicons', 'antosha417/nvim-lsp-file-operations' }
-    -- tag: 'nightly'
+    dependencies: { 'nvim-tree/nvim-web-devicons', 'antosha417/nvim-lsp-file-operations' }
     config: -> require'my.plugins.config.nvimtree'()
 
   -- nvim-dap
   ['mfussenegger/nvim-dap']:
-    opt: true
+    lazy: true
     event: 'BufReadPre'
     module: { 'dap' }
     config: -> require'my.plugins.config.dap'()
-    wants:
-      * 'nvim-dap-ui'
-      * 'nvim-dap-virtual-text'
-      * 'telescope-dap.nvim'
-      * 'nvim-nio'
-    requires:
+    dependencies:
       * 'rcarriga/nvim-dap-ui'
       * 'theHamsta/nvim-dap-virtual-text'
       * 'nvim-telescope/telescope-dap.nvim'
@@ -201,6 +175,6 @@ export default {
 
   -- editorconfig
   ['gpanders/editorconfig.nvim']:
-    opt: true
+    lazy: true
     config: -> require'editorconfig'()
 }
