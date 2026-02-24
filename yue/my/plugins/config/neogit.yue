@@ -3,6 +3,12 @@ export default ->
 
   unless not status_ok
     neogit.setup {
+      commit_editor:
+        kind: 'floating'
+      
+      commit_view:
+        kind: 'floating'
+
       integrations:
         telescope: true
         codediff: true
