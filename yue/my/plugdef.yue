@@ -56,7 +56,7 @@ export plugdef = {
   -- Bufferline.nvim
   ['akinsho/bufferline.nvim']:
     event: 'BufReadPre'
-    tag: 'v4.*'
+    version: '*'
     dependencies: 'nvim-tree/nvim-web-devicons'
     config: -> require'my.plugins.config.bufferline'()
 
