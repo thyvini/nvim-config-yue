@@ -49,8 +49,9 @@ debug =
 
 git =
   * { "<leader>g", group: "Git", nowait: false, remap: false }
-  * { "<leader>gc", "<cmd>lua require'neogit'.open({ 'commit' })<cr>", desc: "Commit", nowait: false, remap: false }
-  * { "<leader>gg", "<cmd>lua require'neogit'.open({ kind: 'replace' })<cr>", desc: "Open Menu", nowait: false, remap: false }
+  * { "<leader>gc", "<cmd>lua require'neogit'.open({ 'commit', kind = 'floating' })<cr>", desc: "Commit", nowait: false, remap: false }
+  * { "<leader>gd", "<cmd>lua require'neogit'.open({ 'diff', kind = 'floating' })<cr>", desc: "Diff", nowait: false, remap: false }
+  * { "<leader>gg", "<cmd>lua require'neogit'.open({ kind = 'floating' })<cr>", desc: "Open Menu", nowait: false, remap: false }
 
 noleader_mappings =
   * { "<c-H>", "<cmd>bprevious<CR>", desc: "Go to previous buffer", nowait: false, remap: false }

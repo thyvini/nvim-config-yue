@@ -5,7 +5,7 @@ export default ->
     view:
       number: true
       relativenumber: true
-      width: 48
+      width: 32
     diagnostics:
       enable: true
       show_on_dirs: true

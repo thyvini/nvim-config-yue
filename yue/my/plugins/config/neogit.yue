@@ -5,4 +5,5 @@ export default ->
     neogit.setup {
       integrations:
         telescope: true
+        codediff: true
     }

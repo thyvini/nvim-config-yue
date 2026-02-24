@@ -11,7 +11,10 @@ export plugdef = {
   ['TimUntersberger/neogit']:
     cmd: 'Neogit'
     module: 'neogit'
-    dependencies: 'nvim-lua/plenary.nvim'
+    dependencies: 
+      * 'nvim-lua/plenary.nvim'
+      * 'esmuellert/codediff.nvim'
+      * 'nvim-telescope/telescope.nvim'
     config: -> require'my.plugins.config.neogit'()
 
   -- plenary.nvim
