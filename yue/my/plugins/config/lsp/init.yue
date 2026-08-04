@@ -17,7 +17,7 @@ servers =
       enable: true
   omnisharp:
     handlers:
-      ['textDocument/definition']: vim.lsp.with(require('omnisharp_extended').handler_telescope)
+      ['textDocument/definition']: require'omnisharp_extended'.definition_handler
     cmd: { 'omnisharp', '--languageserver', '--hostPID', tostring(pid), '--encoding', 'utf-16' }
 
 on_attach = (client, bufnr) ->

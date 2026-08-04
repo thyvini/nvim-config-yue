@@ -114,7 +114,7 @@ export plugdef = {
       * { 'mason-org/mason-lspconfig.nvim', branch: 'v1.x' }
       * 'WhoIsSethDaniel/mason-tool-installer.nvim'
       * 'ray-x/lsp_signature.nvim'
-      * 'jose-elias-alvarez/typescript.nvim'
+      * 'pmizio/typescript-tools.nvim'
       * 'ionide/Ionide-vim'
       * 'b0o/schemastore.nvim'
       * 'Hoffs/omnisharp-extended-lsp.nvim'
