@@ -110,8 +110,8 @@ export plugdef = {
     event: 'BufReadPre'
     config: -> require'my.plugins.config.lsp'()
     dependencies:
-      * { 'mason-org/mason.nvim', branch: 'v1.x' }
-      * { 'mason-org/mason-lspconfig.nvim', branch: 'v1.x' }
+      * 'mason-org/mason.nvim'
+      * 'mason-org/mason-lspconfig.nvim'
       * 'WhoIsSethDaniel/mason-tool-installer.nvim'
       * 'ray-x/lsp_signature.nvim'
       * 'pmizio/typescript-tools.nvim'

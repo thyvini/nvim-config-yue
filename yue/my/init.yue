@@ -1,3 +1,5 @@
 import 'my.plugins' as plugin_setup
+import 'my.lsp' as lsp_setup
 
 plugin_setup()
+lsp_setup()

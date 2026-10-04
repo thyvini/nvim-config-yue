@@ -1,0 +1,13 @@
+export default {
+  gdscript:
+    * type: 'godot'
+      request: 'launch'
+      name: '[Godot] Launch scene'
+      project: '${workspaceFolder}'
+      launch_scene: true
+
+  adapter:
+    type: 'server'
+    host: '127.0.0.1'
+    port: tonumber(os.getenv('GD_Debug') or '6006')
+}

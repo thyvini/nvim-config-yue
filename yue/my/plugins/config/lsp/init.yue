@@ -1,16 +1,10 @@
 pid = vim.fn.getpid()
 
 servers =
-  cssls: {}
-  html: {}
-  emmet_ls: {}
   jsonls:
     settings:
       json:
         schemas: require'schemastore'.json.schemas()
-  rust_analyzer: {}
-  ts_ls: {}
-  angularls: {}
   eslint:
     validate: 'on'
     format:

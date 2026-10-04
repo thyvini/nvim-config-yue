@@ -15,3 +15,9 @@ export default ->
       name: 'launch - netcoredbg'
       request: 'launch'
       program: -> vim.fn.input('Path to DLL > ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+
+    * type: 'godot'
+      name: '[Godot] Launch scene'
+      request: 'launch'
+      project: '${workspaceFolder}'
+      launch_scene: true

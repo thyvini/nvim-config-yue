@@ -1,3 +1,7 @@
+import 'my.plugins.config.dap.godot' as godot
+
+dap = require 'dap'
+
 configure = ->
   dap_breakpoint =
     error:
@@ -23,7 +27,6 @@ configure = ->
 configure_extensions = ->
   require'nvim-dap-virtual-text'.setup commented: true
 
-  dap = require 'dap'
   dapui = require 'dapui'
 
   dapui.setup {}
@@ -34,9 +37,14 @@ configure_extensions = ->
 
 configure_debuggers = ->
   require'my.plugins.config.dap.csharp'()
+  dap.configurations.gdscript = godot.gdscript
+
+configure_adapters = ->
+  dap.adapters.godot = godot.adapter
 
 export default ->
   configure()
   configure_extensions()
+  configure_adapters()
   configure_debuggers()
 
