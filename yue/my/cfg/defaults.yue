@@ -1,5 +1,5 @@
 import 'my.utils' as :set
-import g, api, cmd from vim
+import g, api from vim
 
 export default ->
   -- Remap leader and local leader to <Space>
@@ -39,9 +39,6 @@ export default ->
     completeopt: { 'menu', 'menuone', 'noselect' }
 
   -- Highlight on yank
-  cmd [[
-    augroup YankHighlight
-      autocmd!
-      autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-    augroup end
-  ]]
+  api.nvim_create_autocmd 'TextYankPost',
+    group: api.nvim_create_augroup('YankHighlight', clear: true)
+    callback: -> vim.hl.on_yank()

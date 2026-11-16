@@ -1,15 +1,35 @@
+parsers =
+  * 'lua'
+  * 'vim'
+  * 'vimdoc'
+  * 'query'
+  * 'markdown'
+  * 'markdown_inline'
+  * 'json'
+  * 'yaml'
+  * 'toml'
+  * 'bash'
+  * 'c_sharp'
+  * 'fsharp'
+  * 'rust'
+  * 'typescript'
+  * 'tsx'
+  * 'javascript'
+  * 'html'
+  * 'css'
+  * 'gdscript'
+  * 'godot_resource'
+
 export default ->
-  require'nvim-treesitter'.install {}
-  require'nvim-treesitter'.setup {}
-    -- A list of parser names, or "all"
-    -- ensure_installed: 'all'
-    --
-    -- -- Install languages synchronously (only applied to `ensure_installed`)
-    -- sync_install: false
-    --
-    -- highlight:
-    --   -- `false` will disable the whole extension
-    --   enable: true
-    --
-    -- endwise:
-    --   enable: true
+  ts = require 'nvim-treesitter'
+  ts.setup {}
+  -- Compiling parsers on the main branch requires the tree-sitter CLI
+  if vim.fn.executable('tree-sitter') == 1
+    ts.install parsers
+
+  -- The main branch no longer enables highlighting/indent by itself
+  vim.api.nvim_create_autocmd 'FileType',
+    group: vim.api.nvim_create_augroup('my_treesitter', clear: true)
+    callback: (args) ->
+      if pcall vim.treesitter.start, args.buf
+        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"

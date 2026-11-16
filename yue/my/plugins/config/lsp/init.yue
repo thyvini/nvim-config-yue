@@ -5,40 +5,32 @@ servers =
     settings:
       json:
         schemas: require'schemastore'.json.schemas()
+        validate: enable: true
   eslint:
-    validate: 'on'
-    format:
-      enable: true
+    settings:
+      validate: 'on'
+      format: true
   omnisharp:
     handlers:
       ['textDocument/definition']: require'omnisharp_extended'.definition_handler
-    cmd: { 'omnisharp', '--languageserver', '--hostPID', tostring(pid), '--encoding', 'utf-16' }
+    cmd: { 'OmniSharp', '--languageserver', '--hostPID', tostring(pid), '--encoding', 'utf-16' }
 
-on_attach = (client, bufnr) ->
-  -- Enable completion triggered by <C-X><C-O>
-  -- See `:help omnifunc` and `:help ins-completion` for more information.
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Use LSP as the handler for formatexpr.
-  -- See `:help formatexpr` for more information.
-  vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
-
-capabilities = require'cmp_nvim_lsp'.default_capabilities()
-
-opts =
-  :on_attach
-  :capabilities
-  flags:
-    debounce_text_changes: 150
-
-lsp_signature = require 'lsp_signature'
 lsp_signature_cfg =
   bind: true
   handler_opts:
     border: 'rounded'
 
-
 export default ->
-  lsp_signature.setup lsp_signature_cfg
+  require'lsp_signature'.setup lsp_signature_cfg
 
-  require('my.plugins.config.lsp.installer').setup(servers, opts)
+  -- Shared defaults for every server
+  vim.lsp.config '*',
+    capabilities: require'cmp_nvim_lsp'.default_capabilities()
+    flags:
+      debounce_text_changes: 150
+
+  -- Per-server overrides (merged with nvim-lspconfig defaults)
+  for name, cfg in pairs servers
+    vim.lsp.config name, cfg
+
+  require('my.plugins.config.lsp.installer').setup(servers)

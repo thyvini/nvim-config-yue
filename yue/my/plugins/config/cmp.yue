@@ -52,7 +52,6 @@ export default ->
     }),
     sources: cmp.config.sources({
       { name: 'nvim_lsp' },
-      { name: 'treesitter' },
       { name: 'luasnip' }, -- For luasnip users.
       { name: 'path' },
     }, {
