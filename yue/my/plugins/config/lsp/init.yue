@@ -13,7 +13,7 @@ servers =
   omnisharp:
     handlers:
       ['textDocument/definition']: require'omnisharp_extended'.definition_handler
-    cmd: { 'omnisharp', '--languageserver', '--hostPID', tostring(pid), '--encoding', 'utf-16' }
+    cmd: { 'OmniSharp', '--languageserver', '--hostPID', tostring(pid), '--encoding', 'utf-16' }
 
 lsp_signature_cfg =
   bind: true
