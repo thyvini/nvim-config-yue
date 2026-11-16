@@ -1,12 +1,12 @@
-export setup = (servers, options) ->
+export setup = (servers) ->
   icons = require 'my.icons'
 
   require'mason'.setup {
     ui:
       icons:
-        package_installed: icons.server_installed
-        package_pending: icons.server_pending
-        package_uninstalled: icons.server_uninstalled
+        package_installed: icons.lsp.server_installed
+        package_pending: icons.lsp.server_pending
+        package_uninstalled: icons.lsp.server_uninstalled
   }
 
   require'mason-tool-installer'.setup {
@@ -15,11 +15,8 @@ export setup = (servers, options) ->
     run_on_start: true
   }
 
+  -- mason-lspconfig v2 calls vim.lsp.enable() for installed servers,
+  -- picking up the configs registered with vim.lsp.config()
   require'mason-lspconfig'.setup {
     ensure_installed: vim.tbl_keys servers
-    automatic_installation: false
   }
-
-  -- Package installation folder
-  install_root_dir = vim.fn.stdpath('data') .. '/mason'
-
