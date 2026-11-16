@@ -1,63 +1,63 @@
 import 'telescope.builtin' as builtin
 
 find =
-  * { "<leader>f", group: "Find", nowait: false, remap: false }
-  * { "<leader>fb", builtin.buffers, desc: "Buffers", nowait: false, remap: false }
-  * { "<leader>fe", "<cmd>NvimTreeToggle<CR>", desc: "File Explorer", nowait: false, remap: false }
-  * { "<leader>ff", builtin.find_files, desc: "Files", nowait: false, remap: false }
-  * { "<leader>fg", builtin.live_grep, desc: "Live Grep", nowait: false, remap: false }
-  * { "<leader>fh", builtin.help_tags, desc: "Help Tags", nowait: false, remap: false }
+  * { "<leader>f", group: "Find" }
+  * { "<leader>fb", builtin.buffers, desc: "Buffers" }
+  * { "<leader>fe", "<cmd>NvimTreeToggle<CR>", desc: "File Explorer" }
+  * { "<leader>ff", builtin.find_files, desc: "Files" }
+  * { "<leader>fg", builtin.live_grep, desc: "Live Grep" }
+  * { "<leader>fh", builtin.help_tags, desc: "Help Tags" }
 
 lang_opts =
-  * { "<leader>l", group: "Code (LSP)", nowait: false, remap: false }
-  * { "<leader>lR", "<cmd>Trouble lsp_references<cr>", desc: "Trouble References", nowait: false, remap: false }
-  * { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc: "Code Action", nowait: false, remap: false }
-  * { "<leader>ld", "<cmd>Telescope diagnostics<CR>", desc: "Diagnostics", nowait: false, remap: false }
-  * { "<leader>lf", "<cmd>Lspsaga finder<CR>", desc: "Finder", nowait: false, remap: false }
-  * { "<leader>lg", group: "Goto", nowait: false, remap: false }
-  * { "<leader>lgD", "<cmd>lua vim.lsp.buf.declaration()<CR>", desc: "Declaration", nowait: false, remap: false }
-  * { "<leader>lgI", "<cmd>Telescope lsp_implementations<CR>", desc: "Goto Implementation", nowait: false, remap: false }
-  * { "<leader>lgb", "<cmd>lua vim.lsp.buf.type_definition()<CR>", desc: "Goto Type Definition", nowait: false, remap: false }
-  * { "<leader>lgd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc: "Definition", nowait: false, remap: false }
-  * { "<leader>lgh", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc: "Signature Help", nowait: false, remap: false }
-  * { "<leader>li", "<cmd>LspInfo<CR>", desc: "Lsp Info", nowait: false, remap: false }
-  * { "<leader>ln", "<cmd>Lspsaga rename<CR>", desc: "Rename", nowait: false, remap: false }
-  * { "<leader>lr", "<cmd>Telescope lsp_references<CR>", desc: "Diagnostics", nowait: false, remap: false }
+  * { "<leader>l", group: "Code (LSP)" }
+  * { "<leader>lR", "<cmd>Trouble lsp_references<cr>", desc: "Trouble References" }
+  * { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc: "Code Action" }
+  * { "<leader>ld", "<cmd>Telescope diagnostics<CR>", desc: "Diagnostics" }
+  * { "<leader>lf", "<cmd>Lspsaga finder<CR>", desc: "Finder" }
+  * { "<leader>lg", group: "Goto" }
+  * { "<leader>lgD", "<cmd>lua vim.lsp.buf.declaration()<CR>", desc: "Declaration" }
+  * { "<leader>lgI", "<cmd>Telescope lsp_implementations<CR>", desc: "Goto Implementation" }
+  * { "<leader>lgb", "<cmd>lua vim.lsp.buf.type_definition()<CR>", desc: "Goto Type Definition" }
+  * { "<leader>lgd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc: "Definition" }
+  * { "<leader>lgh", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc: "Signature Help" }
+  * { "<leader>li", "<cmd>checkhealth vim.lsp<CR>", desc: "Lsp Info" }
+  * { "<leader>ln", "<cmd>Lspsaga rename<CR>", desc: "Rename" }
+  * { "<leader>lr", "<cmd>Telescope lsp_references<CR>", desc: "References" }
 
 debug =
-  * { "<leader>d", group: "Debug", nowait: false, remap: false }
-  * { "<leader>dC", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", desc: "Conditional Breakpoint", nowait: false, remap: false }
-  * { "<leader>dE", "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", desc: "Evaluate Input", nowait: false, remap: false }
-  * { "<leader>dR", "<cmd>lua require'dap'.run_to_cursor()<cr>", desc: "Run to Cursor", nowait: false, remap: false }
-  * { "<leader>dS", "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", desc: "Scopes", nowait: false, remap: false }
-  * { "<leader>dU", "<cmd>lua require'dapui'.toggle()<cr>", desc: "Toggle UI", nowait: false, remap: false }
-  * { "<leader>db", "<cmd>lua require'dap'.step_back()<cr>", desc: "Step Back", nowait: false, remap: false }
-  * { "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", desc: "Continue", nowait: false, remap: false }
-  * { "<leader>dd", "<cmd>lua require'dap'.disconnect()<cr>", desc: "Disconnect", nowait: false, remap: false }
-  * { "<leader>de", "<cmd>lua require'dapui'.eval()<cr>", desc: "Evaluate", nowait: false, remap: false }
-  * { "<leader>dg", "<cmd>lua require'dap'.session()<cr>", desc: "Get Session", nowait: false, remap: false }
-  * { "<leader>dh", "<cmd>lua require'dap.ui.widgets'.hover()<cr>", desc: "Hover Variables", nowait: false, remap: false }
-  * { "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", desc: "Step Into", nowait: false, remap: false }
-  * { "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", desc: "Step Over", nowait: false, remap: false }
-  * { "<leader>dp", "<cmd>lua require'dap'.pause.toggle()<cr>", desc: "Pause", nowait: false, remap: false }
-  * { "<leader>dq", "<cmd>lua require'dap'.close()<cr>", desc: "Quit", nowait: false, remap: false }
-  * { "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", desc: "Toggle Repl", nowait: false, remap: false }
-  * { "<leader>ds", "<cmd>lua require'dap'.continue()<cr>", desc: "Start", nowait: false, remap: false }
-  * { "<leader>dt", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc: "Toggle Breakpoint", nowait: false, remap: false }
-  * { "<leader>du", "<cmd>lua require'dap'.step_out()<cr>", desc: "Step Out", nowait: false, remap: false }
-  * { "<leader>dx", "<cmd>lua require'dap'.terminate()<cr>", desc: "Terminate", nowait: false, remap: false }
+  * { "<leader>d", group: "Debug" }
+  * { "<leader>dC", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", desc: "Conditional Breakpoint" }
+  * { "<leader>dE", "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", desc: "Evaluate Input" }
+  * { "<leader>dR", "<cmd>lua require'dap'.run_to_cursor()<cr>", desc: "Run to Cursor" }
+  * { "<leader>dS", "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", desc: "Scopes" }
+  * { "<leader>dU", "<cmd>lua require'dapui'.toggle()<cr>", desc: "Toggle UI" }
+  * { "<leader>db", "<cmd>lua require'dap'.step_back()<cr>", desc: "Step Back" }
+  * { "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", desc: "Continue" }
+  * { "<leader>dd", "<cmd>lua require'dap'.disconnect()<cr>", desc: "Disconnect" }
+  * { "<leader>de", "<cmd>lua require'dapui'.eval()<cr>", desc: "Evaluate" }
+  * { "<leader>dg", "<cmd>lua require'dap'.session()<cr>", desc: "Get Session" }
+  * { "<leader>dh", "<cmd>lua require'dap.ui.widgets'.hover()<cr>", desc: "Hover Variables" }
+  * { "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", desc: "Step Into" }
+  * { "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", desc: "Step Over" }
+  * { "<leader>dp", "<cmd>lua require'dap'.pause()<cr>", desc: "Pause" }
+  * { "<leader>dq", "<cmd>lua require'dap'.close()<cr>", desc: "Quit" }
+  * { "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", desc: "Toggle Repl" }
+  * { "<leader>ds", "<cmd>lua require'dap'.continue()<cr>", desc: "Start" }
+  * { "<leader>dt", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc: "Toggle Breakpoint" }
+  * { "<leader>du", "<cmd>lua require'dap'.step_out()<cr>", desc: "Step Out" }
+  * { "<leader>dx", "<cmd>lua require'dap'.terminate()<cr>", desc: "Terminate" }
 
 git =
-  * { "<leader>g", group: "Git", nowait: false, remap: false }
-  * { "<leader>gg", "<cmd>lua require'neogit'.open({ kind = 'floating' })<cr>", desc: "Open Menu", nowait: false, remap: false }
-  * { "<leader>gc", "<cmd>lua require'neogit'.open({ 'commit', kind = 'floating' })<cr>", desc: "Commit", nowait: false, remap: false }
-  * { "<leader>gd", "<cmd>lua require'neogit'.open({ 'diff', kind = 'floating' })<cr>", desc: "Diff", nowait: false, remap: false }
-  * { "<leader>gp", "<cmd>lua require'neogit'.open({ 'push', kind = 'floating' })<cr>", desc: "Push", nowait: false, remap: false }
+  * { "<leader>g", group: "Git" }
+  * { "<leader>gg", "<cmd>lua require'neogit'.open({ kind = 'floating' })<cr>", desc: "Open Menu" }
+  * { "<leader>gc", "<cmd>lua require'neogit'.open({ 'commit', kind = 'floating' })<cr>", desc: "Commit" }
+  * { "<leader>gd", "<cmd>lua require'neogit'.open({ 'diff', kind = 'floating' })<cr>", desc: "Diff" }
+  * { "<leader>gp", "<cmd>lua require'neogit'.open({ 'push', kind = 'floating' })<cr>", desc: "Push" }
 
 noleader_mappings =
-  * { "<c-H>", "<cmd>bprevious<CR>", desc: "Go to previous buffer", nowait: false, remap: false }
-  * { "<c-L>", "<cmd>bnext<CR>", desc: "Go to next buffer", nowait: false, remap: false }
-  * { "K", "<cmd>Lspsaga hover_doc<cr>", desc: "Documentation", nowait: false, remap: false }
+  * { "<c-H>", "<cmd>bprevious<CR>", desc: "Go to previous buffer" }
+  * { "<c-L>", "<cmd>bnext<CR>", desc: "Go to next buffer" }
+  * { "K", "<cmd>Lspsaga hover_doc<cr>", desc: "Documentation" }
 
 export default ->
   wk = require 'which-key'

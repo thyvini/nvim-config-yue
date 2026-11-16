@@ -6,19 +6,19 @@ configure = ->
   dap_breakpoint =
     error:
       text: '🟥'
-      texthl: 'LspDiagnosticsSignError'
+      texthl: 'DiagnosticSignError'
       linehl: ''
       numhl: ''
     rejected:
       text: ''
-      texthl: 'LspDiagnosticsSignHint'
+      texthl: 'DiagnosticSignHint'
       linehl: ''
       numhl: ''
     stopped:
       text: '⭐️'
-      texthl: 'LspDiagnosticsSignInformation'
+      texthl: 'DiagnosticSignInfo'
       linehl: 'DiagnosticUnderlineInfo'
-      numhl: 'LspDiagnosticsSignInformation'
+      numhl: 'DiagnosticSignInfo'
 
   vim.fn.sign_define('DapBreakpoint', dap_breakpoint.error)
   vim.fn.sign_define('DapStopped', dap_breakpoint.stopped)

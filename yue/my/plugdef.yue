@@ -8,9 +8,8 @@ export plugdef = {
     config: -> require'my.plugins.config.theme'()
       
   -- Neogit
-  ['TimUntersberger/neogit']:
+  ['NeogitOrg/neogit']:
     cmd: 'Neogit'
-    module: 'neogit'
     dependencies: 
       * 'nvim-lua/plenary.nvim'
       * 'esmuellert/codediff.nvim'
@@ -19,11 +18,11 @@ export plugdef = {
 
   -- plenary.nvim
   ['nvim-lua/plenary.nvim']:
-    module: 'plenary'
+    lazy: true
 
   -- Better icons
   ['nvim-tree/nvim-web-devicons']:
-    module: 'nvim-web-devicons'
+    lazy: true
     config: -> require'nvim-web-devicons'.setup default: true
 
   -- Better Comment
@@ -48,7 +47,6 @@ export plugdef = {
   ['nvim-telescope/telescope.nvim']:
     lazy: true
     cmd: { 'Telescope' }
-    module: { 'telescope', 'telescope.builtin' }
     version: '*'
     config: -> require'my.plugins.config.telescope'()
     dependencies:
@@ -76,7 +74,6 @@ export plugdef = {
     lazy: true
     config: -> require'my.plugins.config.cmp'()
     dependencies:
-      * 'neovim/nvim-lspconfig'
       * 'hrsh7th/cmp-nvim-lsp'
       * 'hrsh7th/cmp-buffer'
       * 'hrsh7th/cmp-path'
@@ -85,12 +82,11 @@ export plugdef = {
       * { 'L3MON4D3/LuaSnip', config: -> require'my.plugins.config.luasnip'() }
 
   ['hrsh7th/cmp-nvim-lsp']:
-    module: 'cmp-nvim-lsp'
+    lazy: true
 
   -- Auto pairs
   ['windwp/nvim-autopairs']:
     dependencies: 'nvim-treesitter/nvim-treesitter'
-    module: { 'nvim-autopairs.completion.cmp', 'nvim-autopairs' }
     config: -> require'my.plugins.config.autopairs'()
 
   -- Auto tag
@@ -127,7 +123,6 @@ export plugdef = {
   ['simrat39/rust-tools.nvim']:
     dependencies: { 'nvim-lua/plenary.nvim', 'rust-lang/rust.vim' }
     lazy: true
-    module: 'rust-tools'
     ft: { 'rust' }
 
   ['saecki/crates.nvim']:
@@ -168,16 +163,10 @@ export plugdef = {
   ['mfussenegger/nvim-dap']:
     lazy: true
     event: 'BufReadPre'
-    module: { 'dap' }
     config: -> require'my.plugins.config.dap'()
     dependencies:
       * 'rcarriga/nvim-dap-ui'
       * 'theHamsta/nvim-dap-virtual-text'
       * 'nvim-telescope/telescope-dap.nvim'
       * 'nvim-neotest/nvim-nio'
-
-  -- editorconfig
-  ['gpanders/editorconfig.nvim']:
-    lazy: true
-    config: -> require'editorconfig'()
 }
