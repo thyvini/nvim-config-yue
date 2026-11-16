@@ -102,8 +102,8 @@ export plugdef = {
 
   -- LSP
   ['neovim/nvim-lspconfig']:
-    lazy: true
-    event: 'BufReadPre'
+    -- load at startup so servers are enabled before the first buffer's FileType fires
+    lazy: false
     config: -> require'my.plugins.config.lsp'()
     dependencies:
       * 'mason-org/mason.nvim'
