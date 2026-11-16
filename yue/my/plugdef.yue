@@ -65,8 +65,8 @@ export plugdef = {
 
   -- Treesitter
   ['nvim-treesitter/nvim-treesitter']:
-    lazy: true
-    event: 'BufRead'
+    -- the main branch does not support lazy-loading
+    lazy: false
     build: ':TSUpdate'
     config: -> require'my.plugins.config.treesitter'()
 
