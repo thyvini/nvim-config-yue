@@ -12,6 +12,7 @@ export default ->
         * '--line-number'
         * '--column'
         * '--smart-case'
+        * '--hidden'
         * '--ignore-file'
         * '.gitignore'
 
