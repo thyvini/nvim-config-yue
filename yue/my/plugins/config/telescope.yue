@@ -13,8 +13,9 @@ export default ->
         * '--column'
         * '--smart-case'
         * '--hidden'
-        * '--ignore-file'
-        * '.gitignore'
+        * '--glob=!**/.git/*'
+    pickers:
+      find_files:
+        find_command: { 'rg', '--files', '--hidden', '--glob=!**/.git/*' }
 
-  telescope.load_extension 'dap'
-  
+  pcall telescope.load_extension, 'dap'
